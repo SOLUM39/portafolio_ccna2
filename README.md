@@ -1,5 +1,6 @@
 # portafolio_ccna2
 # Topología de Red: Router-on-a-Stick con VLANs
+<img width="759" height="548" alt="1-topologia" src="https://github.com/user-attachments/assets/2ba7cf93-6bd3-4012-965d-7ac227af366b" />
 
 ## 1. Diagrama de la topología
 
@@ -161,6 +162,7 @@ Enter configuration commands, one per line.  End with CNTL/Z.
 Router(config)#hostname R1-Core-LuisMGL
 R1-Core-LuisMGL(config)#
 ```
+<img width="446" height="80" alt="4 1-asig-nom-R1-core" src="https://github.com/user-attachments/assets/503e28ea-f431-457f-a70e-e0f770f73dad" />
 
 ### Switch central --- `SW-Core-LuisMGL`
 ```bash
@@ -170,6 +172,7 @@ Enter configuration commands, one per line.  End with CNTL/Z.
 Switch(config)#hostname SW-Core-LuisMGL
 SW-Core-LuisMGL(config)#
 ```
+<img width="430" height="71" alt="4 2-asig_nom_SW_Core" src="https://github.com/user-attachments/assets/ffef3c61-43e8-4d24-a1e4-a11c92ca3f8e" />
 
 ### Switch de acceso 1 --- `SW-Lab1-LuisMGL`
 
@@ -180,6 +183,8 @@ Enter configuration commands, one per line.  End with CNTL/Z.
 Switch(config)#hostname SW-Lab1-LuisMGL
 SW-Lab1-LuisMGL(config)#
 ```
+<img width="453" height="67" alt="4 3-asig_nom_SW_lab_1" src="https://github.com/user-attachments/assets/72f1d816-860f-47e6-b111-5d6eb5b023c1" />
+
 ### Switch de acceso 2 --- `SW-Lab2-LuisMGL`
 ```bash
 Switch>enable
@@ -187,8 +192,9 @@ Switch#configure terminal
 Enter configuration commands, one per line.  End with CNTL/Z.
 Switch(config)#hostname SW-Lab2-LuisMGL
 SW-Lab2-LuisMGL(config)#
-
 ```
+<img width="445" height="63" alt="4 4-asig_nom_SW_lab_2" src="https://github.com/user-attachments/assets/2b22a326-7159-4413-bea9-fe948e296597" />
+
 ## 5. Configuración básica de seguridad en router y switches
 Ejecuta en **router y switchS**, después de establecer el
 `hostname`:
@@ -200,6 +206,7 @@ enable secret MODULO_PREFERIDO_MANEJOTE
 service password-encryption
 banner motd #ACCESO RESTRINGIDO: solo personal autorizado#
 ```
+<img width="583" height="97" alt="5 3-CONTRASEÑA-SW-CORE" src="https://github.com/user-attachments/assets/a7789afa-4beb-4101-87d2-90a571965904" />
 
 Para configurar una contraseña en la consola:
 
@@ -227,7 +234,7 @@ Cuando Packet Tracer pregunte por el nombre del archivo de destino,
 pulsa **Enter** para aceptar el valor predeterminado.
 
 ------------------------------------------------------------------------
-## 5. Crear las VLAN 10, 20, 30, 99, 111 y 999
+## 5.5 Crear las VLAN 10, 20, 30, 99, 111 y 999
 
 Crea las VLAN en **los tres switches** (`SW-Core-LuisMGL`, `SW-Lab1-LuisMGL` y
 `SW-Lab2-LuisMGL`).
@@ -254,12 +261,14 @@ vlan 999
 exit
 end
 ```
+<img width="476" height="349" alt="5 5VLANS-SW" src="https://github.com/user-attachments/assets/651b02e2-5d4d-47ae-8a6b-31f3ce86bcd8" />
 
 Verifica la creación:
 
 ```bash
 show vlan brief
 ```
+<img width="618" height="304" alt="SH-VLAN-BRIEF-SWITCHS" src="https://github.com/user-attachments/assets/c706e9be-e2c5-43c8-84d3-cdca67d483f8" />
 
 Comprueba que aparezcan las seis VLAN. La VLAN 999 se usará para los
 puertos que no estén en uso; no asignes a ella los puertos conectados a
@@ -294,6 +303,7 @@ SW-Lab1-LuisMGL(config-if)# switchport access vlan 30
 SW-Lab1-LuisMGL(config-if)#exit
 SW-Lab1-LuisMGL(config)#end
 ```
+<img width="467" height="194" alt="6 1-ASIGNAR-PUERTOS-SW-LAB1" src="https://github.com/user-attachments/assets/07eb93d5-ea74-4021-b48d-ab2457ae1df8" />
 
 ### 6.2 SW-Lab2-LuisMGL
 
@@ -316,6 +326,7 @@ SW-Lab2-LuisMGL(config)#end
 SW-Lab2-LuisMGL#
 %SYS-5-CONFIG_I: Configured from console by console
 ```
+<img width="475" height="229" alt="6 2-ASIGNAR-PUERTOS-SW-LAB2" src="https://github.com/user-attachments/assets/66c293a6-dd5d-4c3a-9c40-ee7e5221a6b5" />
 
 ### 6.3 SW-Core-LuisMGL: PC de gestión
 
@@ -331,6 +342,7 @@ SW-Core-LuisMGL(config-if)# no shutdown
 SW-Core-LuisMGL(config-if)#exit
 SW-Core-LuisMGL(config)#end
 ```
+<img width="453" height="108" alt="6 3-ASIGNAR-PUERTOS-SW-CORE" src="https://github.com/user-attachments/assets/fd112989-440a-48d4-a71e-cace471d08a7" />
 
 **No asignes otros puertos de acceso del SW-Core a una VLAN de usuario
 sin que corresponda a un dispositivo del diagrama.** Los puertos del
@@ -344,6 +356,10 @@ En cada switch:
 ```bash
 show vlan brief
 ```
+
+<img width="564" height="295" alt="6 4 1-VERIFICACION-DE-PERTENECIA-DE-VLANS-SW-CORE" src="https://github.com/user-attachments/assets/aed0edf5-fd74-4c70-935f-8997373eef2b" />
+<img width="586" height="268" alt="6 4 2-VERIFICACION-DE-PERTENECIA-DE-VLANS-SW-LAB1" src="https://github.com/user-attachments/assets/7b23a6ac-ce6a-4d9f-a721-5395a4252a63" />
+<img width="610" height="269" alt="6 4 3-VERIFICACION-DE-PERTENECIA-DE-VLANS-SW-LAB2" src="https://github.com/user-attachments/assets/0abf5210-3dab-4894-a699-09e0e7426a5c" />
 
 Comprueba que `Fa0/1-Fa0/3`, `Fa0/4-Fa0/6` y `Fa0/7` estén en las VLAN
 indicadas en cada switch de laboratorio, y que `SW-Core-luismgl Fa0/9` esté
@@ -391,6 +407,7 @@ SW-Core-LuisMGL(config)#end
 SW-Core-LuisMGL#
 %SYS-5-CONFIG_I: Configured from console by console
 ```
+<img width="627" height="273" alt="7 1-enloace-troncal-sw-core" src="https://github.com/user-attachments/assets/aabd54b2-076a-4026-a464-a76608c679ec" />
 
 Ejemplo de sustitución: si el cable hacia SW-Lab1 está conectado a
 `GigabitEthernet0/1`, escribe `interface gigabitEthernet 0/1` en lugar
@@ -414,6 +431,7 @@ SW-Lab1-LuisMGL(config)#end
 SW-Lab1-LuisMGL#
 %SYS-5-CONFIG_I: Configured from console by console
 ```
+<img width="538" height="175" alt="7 2-enlace-troncal-sw-lab1" src="https://github.com/user-attachments/assets/5953991a-2306-4e81-b8a8-1ca8d3b49587" />
 
 ### 7.3 SW-Lab2-LuisMGL
 Por el puerto que conecta al SW-Core.
@@ -432,6 +450,7 @@ SW-Lab2-LuisMGL#
 %SYS-5-CONFIG_I: Configured from console by console
 
 ```
+<img width="554" height="152" alt="7 3-enlace-troncal-sw-lab2" src="https://github.com/user-attachments/assets/92b41d8c-6844-41bb-b27c-888eb918822d" />
 
 > Si el modelo de switch seleccionado no admite alguno de los comandos
 > `switchport` mostrados, verifica el modelo y las capacidades de la
@@ -445,6 +464,9 @@ En cada switch:
 show interfaces trunk
 show interfaces <PUERTO_TRONCAL> switchport
 ```
+<img width="610" height="485" alt="7 4-verificacion-trocal-lab2" src="https://github.com/user-attachments/assets/182062fe-e06c-4941-8964-9216572af692" />
+<img width="469" height="319" alt="7 4-verificacion-trocal-lab1" src="https://github.com/user-attachments/assets/5c168ae2-92a9-4e3b-8b7d-8cd4a3956718" />
+<img width="542" height="470" alt="7 4-verificacion-trocal-core" src="https://github.com/user-attachments/assets/24689cc4-8a8f-432c-bd6a-14acc6124e26" />
 
 Comprueba que los enlaces aparezcan como troncales, que la VLAN nativa
 sea 111 y que la lista permitida incluya `10,20,30,99,111`.
@@ -467,6 +489,7 @@ SW-Core-LuisMGL(config-if)#exit
 SW-Core-LuisMGL(config)#ip default-gateway 192.168.99.254
 SW-Core-LuisMGL(config)#end
 ```
+<img width="590" height="108" alt="8 1-SW-CORE-PRIMERA-IP-UTILIZABLE" src="https://github.com/user-attachments/assets/b973e602-c50b-43c9-a1a9-c97a8461983b" />
 
 ### 8.2 SW-Lab1-LuisMGL --- segunda IP utilizable
 
@@ -480,6 +503,7 @@ SW-Lab1-LuisMGL(config-if)#exit
 SW-Lab1-LuisMGL(config)#ip default-gateway 192.168.99.254
 SW-Lab1-LuisMGL(config)#end
 ```
+<img width="519" height="152" alt="8 2-SW-LAB1-SEGUNDA-IP-UTILIZABLE" src="https://github.com/user-attachments/assets/a34b2fb8-bfef-4af1-9ff5-3db5c75e3665" />
 
 ### 8.3 SW-Lab2-LuisMGL --- tercera IP utilizable
 
@@ -494,13 +518,24 @@ SW-Lab2-LuisMGL(config)#ip default-gateway 192.168.99.254
 SW-Lab2-LuisMGL(config)#end
 %LINK-5-CHANGED: Interface Vlan99, changed state to up
 ```
+<img width="639" height="187" alt="8 3-SW-LAB2-TERCERA-IP-UTILIZABLE" src="https://github.com/user-attachments/assets/900c98b4-da3b-4ccf-9fa4-52548d6afdb8" />
 
-Verifica en cada switch:
+## 8.4 Verifica en cada switch:
 
 ```bash
 show ip interface brief
 show running-config
 ```
+### SW-Core-LuisMGL
+<img width="462" height="467" alt="8 4 2-SW-CORE-SH-RUNNIG-CONFIG" src="https://github.com/user-attachments/assets/4ef3f079-0f1a-406a-a88c-fbcefcc5caed" />
+<img width="571" height="314" alt="8 4 1-SW-CORE-SH-IPINTERFACE-BRIEF" src="https://github.com/user-attachments/assets/27d95c10-46df-489c-acdc-bb6b04297b9b" />
+### SW-LAB1-LuisMGL
+<img width="583" height="311" alt="8 4 4-SW-LAB1-SH-IPINTERFACE-BRIEF" src="https://github.com/user-attachments/assets/7bfecfc6-5808-47d0-905d-bcff7d4d74bb" />
+<img width="481" height="432" alt="8 4 3-SW-LAB1-SH-RUNNIG-CONFIG" src="https://github.com/user-attachments/assets/e6d7a9a0-7402-45f1-a18c-5526954f1c6f" />
+### SW-LAB2-LuisMGL
+<img width="580" height="451" alt="8 4 6-SW-LAB2-SH-RUNNIG-CONFIG" src="https://github.com/user-attachments/assets/2d4ed750-af61-4765-9629-341b46cc310d" />
+<img width="603" height="309" alt="8 4 5-SW-LAB2-SH-IPINTERFACE-BRIEF" src="https://github.com/user-attachments/assets/071563e6-ada5-4ab0-834a-b8bb536a8677" />
+
 INVESTIGAR SHOW RUNNING-CONFIG
 
 La SVI puede permanecer `down` hasta que la VLAN exista y haya al menos
