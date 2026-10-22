@@ -560,6 +560,8 @@ SW-Core-LuisMGL(config-if-range)#shutdown
 SW-Core-LuisMGL(config-if-range)#exit
 SW-Core-LuisMGL(config)#end
 ```
+<img width="1045" height="792" alt="9 1 1 1-SW-CORE-CERRANDO-PUERTOS" src="https://github.com/user-attachments/assets/38451b7b-8547-4766-b27d-f69dd1ef0d33" />
+
 
 ### 9.2 SW-Lab1-LuisMGL
 ```bash
@@ -572,6 +574,9 @@ SW-Lab1-LuisMGL(config-if-range)#shutdown
 SW-Lab1-LuisMGL(config)#end
 SW-Lab1-LuisMGL#
 ```
+<img width="848" height="690" alt="9 2 1 1-SW-LAB1-CERRANDO-PUERTOS" src="https://github.com/user-attachments/assets/72c82fed-4a30-4780-8f6e-2f27528033e5" />
+
+
 ### 9.3 SW-Lab2-LuisMGL
 ```bash
 SW-Lab2-LuisMGL#configure terminal
@@ -583,6 +588,8 @@ SW-Lab2-LuisMGL(config-if-range)#shutdown
 SW-Lab2-LuisMGL(config-if-range)#exit
 SW-Lab2-LuisMGL(config)#end
 ```
+<img width="735" height="687" alt="9 3 1 1-SW-LAB2-CERRANDO-PUERTOS" src="https://github.com/user-attachments/assets/c99abebc-9871-4e36-9835-5123d133504f" />
+
 Verifica:
 
 ```bash
