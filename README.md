@@ -552,32 +552,35 @@ enlaces troncales.
 
 ### 9.1 SW-Core-LuisMGL
 ```bash
-configure terminal
-interface range range fa0/1 - fa0/8,fa0/10-fa0/22,gi0/2
- switchport mode access
- switchport access vlan 999
- shutdown
-exit
-end
+SW-Core-LuisMGL#configure terminal
+SW-Core-LuisMGL(config)#interface range fa0/1-8,fa0/10-22,gi0/2
+SW-Core-LuisMGL(config-if-range)#switchport mode access
+SW-Core-LuisMGL(config-if-range)#switchport access vlan 999
+SW-Core-LuisMGL(config-if-range)#shutdown
+SW-Core-LuisMGL(config-if-range)#exit
+SW-Core-LuisMGL(config)#end
 ```
+### 9.2 SW-Lab1-LuisMGL
 ```bash
-configure terminal
-interface range range fa0/8 - fa0/23,gi0/2
- switchport mode access
- switchport access vlan 999
- shutdown
-exit
-end
+SW-Lab1-LuisMGL#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+SW-Lab1-LuisMGL(config)#interface range fa0/8-23,gi0/1,gi0/2
+SW-Lab1-LuisMGL(config-if-range)#switchport mode access
+SW-Lab1-LuisMGL(config-if-range)#switchport access vlan 999
+SW-Lab1-LuisMGL(config-if-range)#shutdown
+SW-Lab1-LuisMGL(config)#end
+SW-Lab1-LuisMGL#
 ```
-### 9.2 SW-Lab2-LuisMGL
+### 9.3 SW-Lab2-LuisMGL
 ```bash
-configure terminal
-interface range range fa0/8 - fa0/22,fa0/24,gi0/2
- switchport mode access
- switchport access vlan 999
- shutdown
-exit
-end
+SW-Lab2-LuisMGL#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+SW-Lab2-LuisMGL(config)#interface range fa0/8-22,fa0/24,gi0/1,gi0/2
+SW-Lab2-LuisMGL(config-if-range)#switchport mode access
+SW-Lab2-LuisMGL(config-if-range)#switchport access vlan 999
+SW-Lab2-LuisMGL(config-if-range)#shutdown
+SW-Lab2-LuisMGL(config-if-range)#exit
+SW-Lab2-LuisMGL(config)#end
 ```
 Verifica:
 
@@ -586,3 +589,243 @@ show vlan brief
 show interfaces status
 ```
 ------------------------------------------------------------------------
+
+# 10. Configurar las subinterfaces en R1-Core-LMGL
+
+El router usa la interfaz física `GigabitEthernet0/0/0` hacia el
+SW-Core. El método solicitado es **Router-on-a-Stick**: una subinterfaz
+por VLAN en la misma interfaz física, con encapsulamiento IEEE 802.1Q.
+
+Las últimas IP utilizables de las subredes asignadas son las puertas de
+enlace: `192.168.10.254`, `192.168.20.254`, `192.168.30.254` y
+`192.168.99.254`.
+
+```bash
+
+R1-Core-LuisMGL>ENABLE
+Password: 
+Password: 
+R1-Core-LuisMGL#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1-Core-LuisMGL(config)#interface gi 0/0
+R1-Core-LuisMGL(config-if)#no shutdown
+
+R1-Core-LuisMGL(config-if)#exit
+R1-Core-LuisMGL(config)#
+R1-Core-LuisMGL(config)#interface gi 0/0.10
+R1-Core-LuisMGL(config-subif)#encapsulation dot1Q 10
+R1-Core-LuisMGL(config-subif)#ip address 192.168.10.254 255.255.255.0
+R1-Core-LuisMGL(config-subif)#exit
+R1-Core-LuisMGL(config)#
+R1-Core-LuisMGL(config)#interface gi 0/0.20
+R1-Core-LuisMGL(config-subif)#encapsulation dot1Q 20
+R1-Core-LuisMGL(config-subif)#ip address 192.168.20.254 255.255.255.0
+R1-Core-LuisMGL(config-subif)#exit
+R1-Core-LuisMGL(config)#
+R1-Core-LuisMGL(config)#interface gi 0/0.30
+R1-Core-LuisMGL(config-subif)#encapsulation dot1Q 30
+R1-Core-LuisMGL(config-subif)#ip address 192.168.30.254 255.255.255.0
+R1-Core-LuisMGL(config-subif)#exit
+R1-Core-LuisMGL(config)#
+R1-Core-LuisMGL(config)#interface gi 0/0.99
+R1-Core-LuisMGL(config-subif)#encapsulation dot1Q 99
+R1-Core-LuisMGL(config-subif)#ip address 192.168.99.254 255.255.255.0
+R1-Core-LuisMGL(config-subif)#exit
+R1-Core-LuisMGL(config)#
+R1-Core-LuisMGL(config)#interface gi 0/0.111
+R1-Core-LuisMGL(config-subif)#encapsulation dot1Q 111 native
+R1-Core-LuisMGL(config-subif)#no ip address
+R1-Core-LuisMGL(config-subif)#exit
+R1-Core-LuisMGL(config)#end
+```
+
+La subinterfaz `.111`. No se le asigna dirección IP
+porque no tiene una subred para VLAN 111, no se usa
+como gateway de hosts en esta práctica.
+
+Verifica las interfaces:
+
+``` text
+show ip interface brief
+show running-config
+```
+
+Las subinterfaces deben quedar habilitadas cuando la interfaz física
+esté activa y el enlace troncal esté correctamente configurado.
+
+------------------------------------------------------------------------
+## 11. Asignar direccionamiento estático a los hosts
+
+En cada PC, abre **Desktop → IP Configuration → Static** e introduce la
+IP, la máscara y el gateway de la Tabla B.
+
+Ejemplo para una PC de Administración:
+
+-   IPv4 Address: `192.168.10.1`
+-   Subnet Mask: `255.255.255.0`
+-   Default Gateway: `192.168.10.254`
+
+Ejemplo para la PC de gestión:
+
+-   IPv4 Address: `192.168.99.4`
+-   Subnet Mask: `255.255.255.0`
+-   Default Gateway: `192.168.99.254`
+
+Repite con la dirección correspondiente a cada PC en la tabla. No
+dupliques direcciones IP.
+
+------------------------------------------------------------------------
+
+## 12. Verificar la configuración de VLAN y enlaces
+
+Ejecuta los siguientes comandos en los switches:
+
+``` text
+show vlan brief
+show interfaces trunk
+show ip interface brief
+```
+
+Ejecuta en el router:
+
+``` text
+show ip interface brief
+```
+
+Verifica lo siguiente:
+
+-   Las VLAN 10, 20, 30, 99, 111 y 999 existen en los tres switches.
+-   Los puertos de acceso están en la VLAN correspondiente.
+-   Los enlaces troncales permiten las VLAN 10, 20, 30, 99 y 111.
+-   La VLAN nativa de cada troncal es 111.
+-   Las SVI de gestión usan `192.168.99.1`, `.2` y `.3`.
+-   Las subinterfaces del router tienen las direcciones indicadas en la
+    Tabla A.
+
+------------------------------------------------------------------------
+
+## 13. Verificar conectividad con Ping
+
+Realiza las pruebas desde las PCs en **Desktop → Command Prompt**.
+
+### 13.1 Prueba del gateway de cada VLAN
+
+Desde una PC de cada VLAN, ejecuta ping a su gateway:
+
+```bash
+ping 192.168.10.254
+ping 192.168.20.254
+ping 192.168.30.254
+ping 192.168.99.254
+```
+# O
+
+Para verificar la conectividad y el enrutamiento entre tus VLANs sin usar la terminal de los equipos, puedes usar la herramienta del **sobrecito** (**Simple PDU**). Sigue estos pasos:
+
+### 🛠️ Pasos para realizar la prueba en Tiempo Real:
+
+1. **Selecciona la herramienta:** Presiona la tecla **`P`** en tu teclado o haz clic en el icono del **sobre cerrado** en la barra de herramientas lateral derecha.
+2. **Elige el origen:** Haz clic sobre la computadora desde la cual quieres mandar el ping (por ejemplo, `PC-1`).
+3. **Elige el destino:** Haz clic sobre la computadora de la misma vlan (por ejemplo, `PC-2`).
+4. **Verifica el resultado:** Revisa la esquina inferior derecha de Packet Tracer en la ventana **Ventas / Escenarios**:
+   * Si dice **`Successful`**, ¡tu enrutamiento entre VLANs funciona perfectamente! 🎉
+   * Si dice **`Failed`**, revisa que las subinterfaces del router y el enlace troncal del switch estén bien configurados.
+Ejecuta solamente el ping correspondiente a la VLAN configurada en esa
+PC.
+
+### 13.2 Pruebas inter-VLAN
+Esta prueba verifica que el **Router-on-a-Stick** está funcionando. El paquete sale de una VLAN, sube al router a través del enlace troncal por una subinterfaz, el router lo cambia de red y lo baja por otra subinterfaz hacia la VLAN de destino.
+
+Desde una PC de Administración (por ejemplo `192.168.10.1`), prueba una
+PC de Laboratorios y otra de Dirección:
+
+``` text
+ping 192.168.20.1
+ping 192.168.30.1
+```
+
+Desde la PC de gestión (`192.168.99.4`), prueba el gateway y una PC de
+otra VLAN:
+
+``` text
+ping 192.168.99.254
+ping 192.168.10.1
+```
+# o
+### 🛠️ Pasos para realizar la prueba en Tiempo Real:
+
+1. **Selecciona la herramienta:** Presiona la tecla **`P`** en tu teclado o haz clic en el icono del **sobre cerrado** en la barra de herramientas lateral derecha.
+2. **Origen:** Una computadora en una VLAN (ej. `PC-VLAN10`).
+3. **Destino:** Una computadora en una VLAN **diferente** (ej. `PC-VLAN20`).**Resultado esperado:** 
+4. **1er intento:** **`Failed`** (Normal, debido al proceso de ARP entre el router y las PCs).
+5 **2do intento:** **`Successful`** (Obligatorio para dar por buena la configuración).
+6 **Qué demuestra:** Que el enlace troncal (`trunk`), la encapsulación `dot1Q` y las direcciones IP de las subinterfaces del router están operando al 100%.
+Si el primer ping falla, repítelo una vez: Packet Tracer puede necesitar
+resolver ARP inicialmente. Registra los resultados reales; no marques
+como exitosas pruebas que no hayas realizado.
+
+## Si un ping falla
+
+1.  Confirma que la PC tiene IP, máscara y gateway correctos.
+2.  Ejecuta `show vlan brief` para verificar la VLAN del puerto.
+3.  Ejecuta `show interfaces trunk` para comprobar los enlaces
+    troncales, las VLAN permitidas y la VLAN nativa.
+4.  Ejecuta `show ip interface brief` en el router para revisar la
+    interfaz física y las subinterfaces.
+5.  Revisa que cada subinterfaz tenga `encapsulation dot1Q` con el ID de
+    VLAN correcto.
+6.  Vuelve a probar el ping y registra qué corregiste.
+
+------------------------------------------------------------------------
+
+## 14. Guardar la configuración
+
+En el router y en cada switch, ejecuta:
+
+```bash
+R1-Core-LuisMGL#wr(que significa write memory)
+Building configuration...
+[OK]
+R1-Core-LuisMGL#
+
+```
+
+Guarda el archivo de Packet Tracer mediante **File → Save As** con un
+nombre claro, por ejemplo:
+
+`Etapa1_Infraestructura_LMGL.pkt`
+
+------------------------------------------------------------------------
+
+### 15. Archivo de simulación `.pkt`
+
+
+### 15.1 Diario de aprendizaje y troubleshooting
+
+**¿Cuál fue el mayor reto técnico que enfrentaste en esta unidad?**
+
+> Escribe aquí tu respuesta personal.
+
+**Bitácora de errores**
+
+-   **Error 1:** Describe un error que realmente te ocurrió.
+-   **Solución 1:** Explica el comando o cambio que utilizaste para
+    resolverlo.
+-   **Error 2:** Describe un segundo error real.
+-   **Solución 2:** Explica cómo lo solucionaste.
+
+### 15.2 Video explicativo (máximo 3 minutos)
+
+Graba un video de máximo 3 minutos explicando el funcionamiento de la
+topología y mostrando la configuración realizada. Puedes seguir este
+orden:
+
+1.  Presenta el router, el switch central y los dos switches de acceso.
+2.  Explica la función de las VLAN 10, 20, 30 y 99, y la VLAN nativa
+    111.
+3.  Muestra un ejemplo de puerto de acceso y un enlace troncal.
+4.  Muestra las subinterfaces del router y sus gateways.
+5.  Ejecuta una prueba de ping inter-VLAN y muestra el resultado real.
+
+------------------------------------------------------------------------
+
