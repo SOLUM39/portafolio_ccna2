@@ -560,6 +560,7 @@ SW-Core-LuisMGL(config-if-range)#shutdown
 SW-Core-LuisMGL(config-if-range)#exit
 SW-Core-LuisMGL(config)#end
 ```
+
 ### 9.2 SW-Lab1-LuisMGL
 ```bash
 SW-Lab1-LuisMGL#configure terminal
@@ -797,7 +798,8 @@ nombre claro, por ejemplo:
 
 ------------------------------------------------------------------------
 
-### 15. Archivo de simulación `.pkt`
+### 15. Archivo `.pkt`
+
 
 
 ### 15.1 Diario de aprendizaje y troubleshooting
