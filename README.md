@@ -41,55 +41,8 @@
 
 ## 2. Diagrama gráfico mermaid
 
-```mermaid
-%%{init: {'theme': 'dark'}}%%
-flowchart TB
-    R1["R1-Core-LuisMGL<br/>Router Central<br/>G0/0/0<br/>Router-on-a-Stick"]
+<img width="1052" height="793" alt="topologia_mai" src="https://github.com/user-attachments/assets/b6671ec3-6bc2-48a3-9a61-71f86520ab74" />
 
-    CORE["SW-Core-LuisMGL<br/>Switch Núcleo"]
-
-    PCG["PC Gestión<br/>VLAN 99<br/>Fa0/9"]
-
-    LAB1["SW-Lab1-LuisMGL<br/>Edificio A"]
-    LAB2["SW-Lab2-LuisMGL<br/>Edificio B"]
-
-    R1 <-->|"Trunk 802.1Q<br/>VLAN 10, 20, 30, 99<br/>VLAN 111 nativa"| CORE
-
-    CORE <-->|"Trunk<br/>VLAN 10, 20, 30<br/>VLAN 111 nativa"| LAB1
-    CORE <-->|"Trunk<br/>VLAN 10, 20, 30<br/>VLAN 111 nativa"| LAB2
-
-    CORE --- PCG
-
-    subgraph A["Edificio A - SW-Lab1"]
-        A10["VLAN 10<br/>3 PCs Administrativos<br/>Fa0/1 - Fa0/3"]
-        A20["VLAN 20<br/>3 PCs Alumnos<br/>Fa0/4 - Fa0/6"]
-        A30["VLAN 30<br/>1 PC Dirección<br/>Fa0/7"]
-
-        LAB1 --- A10
-        LAB1 --- A20
-        LAB1 --- A30
-    end
-
-    subgraph B["Edificio B - SW-Lab2"]
-        B10["VLAN 10<br/>3 PCs Administrativos<br/>Fa0/1 - Fa0/3"]
-        B20["VLAN 20<br/>3 PCs Alumnos<br/>Fa0/4 - Fa0/6"]
-        B30["VLAN 30<br/>1 PC Dirección<br/>Fa0/7"]
-
-        LAB2 --- B10
-        LAB2 --- B20
-        LAB2 --- B30
-    end
-
-    classDef router fill:#2563eb,color:#ffffff,stroke:#1e40af
-    classDef core fill:#0f766e,color:#ffffff,stroke:#115e59
-    classDef access fill:#dbeafe,color:#1e3a8a,stroke:#2563eb
-    classDef pc fill:#f3f4f6,color:#111827,stroke:#6b7280
-
-    class R1 router
-    class CORE core
-    class LAB1,LAB2 access
-    class PCG,A10,A20,A30,B10,B20,B30 pc
-```
 
 ## 3. Tabla de direccionamiento
 
