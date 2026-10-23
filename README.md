@@ -343,6 +343,8 @@ SW-Core-LuisMGL(config-if)#exit
 SW-Core-LuisMGL(config)#end
 ```
 <img width="453" height="108" alt="6 3-ASIGNAR-PUERTOS-SW-CORE" src="https://github.com/user-attachments/assets/fd112989-440a-48d4-a71e-cace471d08a7" />
+# Quedaria de la siguiente manera
+<img width="892" height="670" alt="5 6-VLANS" src="https://github.com/user-attachments/assets/1234d0ed-2a6d-478d-bfa8-19467b244b0f" />
 
 **No asignes otros puertos de acceso del SW-Core a una VLAN de usuario
 sin que corresponda a un dispositivo del diagrama.** Los puertos del
