@@ -825,7 +825,7 @@ nombre claro, por ejemplo:
 
 ### 15. Archivo `.pkt`
 
-./1-proyecto.pkt
+[📂 Descargar Archivo Packet Tracer (1-proyecto.pkt)](./1-proyecto.pkt)
 
 ### 15.1 Diario de aprendizaje y troubleshooting
 
