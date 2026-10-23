@@ -39,42 +39,37 @@
          Puerto Fa0/9
 ```
 
-## 2. Diagrama gráfico con Mermaid
+## 2. Diagrama gráfico
+
+<details open>
+<summary>🗺️ Desplegar Diagrama de Topología Lógica</summary>
 
 ```mermaid
-%%{init: {'theme': 'dark'}}%%
 flowchart TB
-    R1["R1-Core-LuisMGL<br/>Router Central<br/>G0/0/0<br/>Router-on-a-Stick"]
+    R1["R1-Core-LuisMGL - Router Central - G0-0-0 - Router-on-a-Stick"]
+    CORE["SW-Core-LuisMGL - Switch Nucleo"]
+    PCG["PC Gestion - VLAN 99 - Fa0-9"]
+    LAB1["SW-Lab1-LuisMGL - Edificio A"]
+    LAB2["SW-Lab2-LuisMGL - Edificio B"]
 
-    CORE["SW-Core-LuisMGL<br/>Switch Núcleo"]
-
-    PCG["PC Gestión<br/>VLAN 99<br/>Fa0/9"]
-
-    LAB1["SW-Lab1-LuisMGL<br/>Edificio A"]
-    LAB2["SW-Lab2-LuisMGL<br/>Edificio B"]
-
-    R1 <-->|"Trunk 802.1Q<br/>VLAN 10, 20, 30, 99<br/>VLAN 111 nativa"| CORE
-
-    CORE <-->|"Trunk<br/>VLAN 10, 20, 30<br/>VLAN 111 nativa"| LAB1
-    CORE <-->|"Trunk<br/>VLAN 10, 20, 30<br/>VLAN 111 nativa"| LAB2
-
+    R1 <--> CORE
+    CORE <--> LAB1
+    CORE <--> LAB2
     CORE --- PCG
 
     subgraph A["Edificio A - SW-Lab1"]
-        A10["VLAN 10<br/>3 PCs Administrativos<br/>Fa0/1 - Fa0/3"]
-        A20["VLAN 20<br/>3 PCs Alumnos<br/>Fa0/4 - Fa0/6"]
-        A30["VLAN 30<br/>1 PC Dirección<br/>Fa0/7"]
-
+        A10["VLAN 10 - 3 PCs Admin - Fa0-1 a Fa0-3"]
+        A20["VLAN 20 - 3 PCs Alumnos - Fa0-4 a Fa0-6"]
+        A30["VLAN 30 - 1 PC Direccion - Fa0-7"]
         LAB1 --- A10
         LAB1 --- A20
         LAB1 --- A30
     end
 
     subgraph B["Edificio B - SW-Lab2"]
-        B10["VLAN 10<br/>3 PCs Administrativos<br/>Fa0/1 - Fa0/3"]
-        B20["VLAN 20<br/>3 PCs Alumnos<br/>Fa0/4 - Fa0/6"]
-        B30["VLAN 30<br/>1 PC Dirección<br/>Fa0/7"]
-
+        B10["VLAN 10 - 3 PCs Admin - Fa0-1 a Fa0-3"]
+        B20["VLAN 20 - 3 PCs Alumnos - Fa0-4 a Fa0-6"]
+        B30["VLAN 30 - 1 PC Direccion - Fa0-7"]
         LAB2 --- B10
         LAB2 --- B20
         LAB2 --- B30
@@ -90,6 +85,9 @@ flowchart TB
     class LAB1,LAB2 access
     class PCG,A10,A20,A30,B10,B20,B30 pc
 ```
+
+</details>
+
 
 
 ## 3. Tabla de direccionamiento
