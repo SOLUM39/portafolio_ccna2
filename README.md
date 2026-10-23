@@ -145,7 +145,7 @@ Se asignan direcciones estáticas consecutivas dentro de cada VLAN. La PC de ges
 | PC-Direccion-Lab2 | 30 | `192.168.30.2/24` | `255.255.255.0` | `192.168.30.254` |
 | PC-Gestion | 99 | `192.168.99.4/24` | `255.255.255.0` | `192.168.99.254` |
 
-> 💡 **Tip de Packet Tracer:** En cada PC ve a **Desktop → IP Configuration → Static**. Introduce la dirección IP, la máscara y el gateway indicados en la tabla para habilitar el tráfico.
+>  **Tip de Packet Tracer:** En cada PC ve a **Desktop → IP Configuration → Static**. Introduce la dirección IP, la máscara y el gateway indicados en la tabla para habilitar el tráfico.
 
 
 ------------------------------------------------------------------------
