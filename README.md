@@ -590,12 +590,21 @@ SW-Lab2-LuisMGL(config)#end
 ```
 <img width="735" height="687" alt="9 3 1 1-SW-LAB2-CERRANDO-PUERTOS" src="https://github.com/user-attachments/assets/c99abebc-9871-4e36-9835-5123d133504f" />
 
-Verifica:
+## 9.4 Verifica:
 
 ```bash
 show vlan brief
 show interfaces status
 ```
+# SW-Core-LuisMGL
+<img width="730" height="732" alt="9 4 2 1-SW-CORE-VERIFICACION-PUERTOS" src="https://github.com/user-attachments/assets/dd5927c6-7b00-444f-985a-c2680bdcb80b" />
+
+# SW-Lab1-LuisMGL
+<img width="722" height="730" alt="9 4 2 2-SW-LAB1-VERIFICACION-PUERTOS" src="https://github.com/user-attachments/assets/8ca265ab-4b97-4d5b-a5e4-e1d9f1dbef4a" />
+
+# SW-Lab2-LuisMGL
+<img width="658" height="722" alt="9 4 2 3-SW-LAB2-VERIFICACION-PUERTOS" src="https://github.com/user-attachments/assets/3f018550-d4e9-4606-9feb-bdc2e36f59db" />
+
 ------------------------------------------------------------------------
 
 # 10. Configurar las subinterfaces en R1-Core-LMGL
@@ -657,6 +666,8 @@ Verifica las interfaces:
 show ip interface brief
 show running-config
 ```
+<img width="443" height="808" alt="10 1 2-verificacion" src="https://github.com/user-attachments/assets/f07803eb-1538-4827-955a-64cce50270f1" />
+<img width="706" height="182" alt="10 1 1-verificacion-show-ip-interface-bief" src="https://github.com/user-attachments/assets/120dc8ed-0f3a-4a86-b588-987b7127f2d6" />
 
 Las subinterfaces deben quedar habilitadas cuando la interfaz física
 esté activa y el enlace troncal esté correctamente configurado.
@@ -666,12 +677,14 @@ esté activa y el enlace troncal esté correctamente configurado.
 
 En cada PC, abre **Desktop → IP Configuration → Static** e introduce la
 IP, la máscara y el gateway de la Tabla B.
+<img width="217" height="230" alt="11 1 1-ingreso-a-la-pc" src="https://github.com/user-attachments/assets/36ae8a2b-7b5e-471f-bc29-8d3c66fbba6c" />
 
 Ejemplo para una PC de Administración:
 
 -   IPv4 Address: `192.168.10.1`
 -   Subnet Mask: `255.255.255.0`
 -   Default Gateway: `192.168.10.254`
+<img width="895" height="275" alt="11 1 2-ingreso-ip-gatwey-mascara" src="https://github.com/user-attachments/assets/f1e2a0e1-c12a-4c23-b601-b43f92b45fed" />
 
 Ejemplo para la PC de gestión:
 
@@ -693,12 +706,15 @@ show vlan brief
 show interfaces trunk
 show ip interface brief
 ```
+<img width="677" height="607" alt="12 1 -VERIFICACIÓN-SW-CORE" src="https://github.com/user-attachments/assets/4c64397c-cd6b-4d8a-8517-98b668a36077" />
+<img width="651" height="473" alt="12 1 2-VERIFICACIÓN-SW-CORE" src="https://github.com/user-attachments/assets/cce64fc0-415c-43e0-adad-94a461bba380" />
 
 Ejecuta en el router:
 
 ``` text
 show ip interface brief
 ```
+<img width="713" height="197" alt="12 1 2-VERIFICACIÓN-ROUTER-CORE" src="https://github.com/user-attachments/assets/d644980f-227d-480b-9c20-0e9118662be7" />
 
 Verifica lo siguiente:
 
@@ -740,6 +756,7 @@ Para verificar la conectividad y el enrutamiento entre tus VLANs sin usar la ter
    * Si dice **`Failed`**, revisa que las subinterfaces del router y el enlace troncal del switch estén bien configurados.
 Ejecuta solamente el ping correspondiente a la VLAN configurada en esa
 PC.
+<img width="778" height="40" alt="13 1 2-VERIFICACIÓN-ping" src="https://github.com/user-attachments/assets/ab20c583-57ed-45e5-9234-c8c6ccb64f6e" />
 
 ### 13.2 Pruebas inter-VLAN
 Esta prueba verifica que el **Router-on-a-Stick** está funcionando. El paquete sale de una VLAN, sube al router a través del enlace troncal por una subinterfaz, el router lo cambia de red y lo baja por otra subinterfaz hacia la VLAN de destino.
@@ -771,6 +788,7 @@ ping 192.168.10.1
 Si el primer ping falla, repítelo una vez: Packet Tracer puede necesitar
 resolver ARP inicialmente. Registra los resultados reales; no marques
 como exitosas pruebas que no hayas realizado.
+<img width="772" height="43" alt="13 1 2-VERIFICACIÓN-ping-inter-vlan" src="https://github.com/user-attachments/assets/e8d38eb3-75ec-48fe-b3e1-27a832d98ae8" />
 
 ## Si un ping falla
 
@@ -807,7 +825,7 @@ nombre claro, por ejemplo:
 
 ### 15. Archivo `.pkt`
 
-
+./1-proyecto.pkt
 
 ### 15.1 Diario de aprendizaje y troubleshooting
 
@@ -822,19 +840,6 @@ nombre claro, por ejemplo:
     resolverlo.
 -   **Error 2:** Describe un segundo error real.
 -   **Solución 2:** Explica cómo lo solucionaste.
-
-### 15.2 Video explicativo (máximo 3 minutos)
-
-Graba un video de máximo 3 minutos explicando el funcionamiento de la
-topología y mostrando la configuración realizada. Puedes seguir este
-orden:
-
-1.  Presenta el router, el switch central y los dos switches de acceso.
-2.  Explica la función de las VLAN 10, 20, 30 y 99, y la VLAN nativa
-    111.
-3.  Muestra un ejemplo de puerto de acceso y un enlace troncal.
-4.  Muestra las subinterfaces del router y sus gateways.
-5.  Ejecuta una prueba de ping inter-VLAN y muestra el resultado real.
 
 ------------------------------------------------------------------------
 
