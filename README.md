@@ -837,7 +837,7 @@ nombre claro, por ejemplo:
 
 **Bitácora de errores**
 
-*   **Error 1:** No documentar ni registrar la contraseña asignada para acceder al modo privilegiado (`enable`) del router.
+*   **Error 1:** No documentar ni registrar la contraseña asignada para acceder al modo privilegiado (`MODULO_PREFERIDO_MANEJOTE`) del router.
 *   **Solución 1:** Se tuvo que reiniciar el router para volver a aplicar la configuración inicial desde cero, asegurando esta vez registrar la contraseña de manera correcta.
 *   **Error 2:** Copiar y pegar una contraseña en el switch que incluía por error los caracteres `< >` (los cuales comúnmente delimitan variables en las guías, pero no deben escribirse).
 *   **Solución 2:** Reconfigurar la contraseña en la línea de comandos utilizando una cadena de texto limpia sin los caracteres `< >`.
