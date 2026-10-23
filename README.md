@@ -125,7 +125,7 @@ es `.1` y la última es `.254`.
 
 ### 3.4 Tabla B. Hosts
 
-*Se asignan direcciones estáticas consecutivas dentro de cada VLAN. La PC de gestión usa `192.168.99.4`, porque las direcciones `.1`, `.2` y `.3` se reservan para las SVI de los tres switches.*
+Se asignan direcciones estáticas consecutivas dentro de cada VLAN. La PC de gestión usa `192.168.99.4`, porque las direcciones `.1`, `.2` y `.3` se reservan para las SVI de los tres switches.
 
 | Dispositivo | VLAN | Dirección IP/CIDR | Máscara | Gateway predeterminado |
 | :--- | :---: | :---: | :---: | :---: |
@@ -144,8 +144,9 @@ es `.1` y la última es `.254`.
 | PC-Direccion-Lab1 | 30 | `192.168.30.1/24` | `255.255.255.0` | `192.168.30.254` |
 | PC-Direccion-Lab2 | 30 | `192.168.30.2/24` | `255.255.255.0` | `192.168.30.254` |
 | PC-Gestion | 99 | `192.168.99.4/24` | `255.255.255.0` | `192.168.99.254` |
-> En cada PC: **Desktop → IP Configuration → Static**. Introduce la
-> dirección IP, la máscara y el gateway indicados en la tabla.
+
+> 💡 **Tip de Packet Tracer:** En cada PC ve a **Desktop → IP Configuration → Static**. Introduce la dirección IP, la máscara y el gateway indicados en la tabla para habilitar el tráfico.
+
 
 ------------------------------------------------------------------------
 
