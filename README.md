@@ -7,7 +7,7 @@
 ```bash
                  [ R1-Core-LuisMGL (Router) ]
                           |
-                          | G0/0/0
+                          | Gi0/0
                           | Trunk 802.1Q
                           | Router-on-a-Stick
                           | VLANs 10, 20, 30, 99
@@ -218,11 +218,15 @@ exit
 ```
 Para la línea VTY, destinada al acceso remoto por terminal:
 ```bash
+Para la línea VTY, destinada al acceso remoto por terminal:
+```bash
 line vty 0 4
-password <CLAVE_VTY>
+password MODULO_PREFERIDO_MANEJOTE
 login
 exit
 ```
+
+```bash
 
 Guarda la configuración al terminar el equipo:
 ```bash
@@ -573,6 +577,7 @@ SW-Lab1-LuisMGL(config)#interface range fa0/8-23,gi0/1,gi0/2
 SW-Lab1-LuisMGL(config-if-range)#switchport mode access
 SW-Lab1-LuisMGL(config-if-range)#switchport access vlan 999
 SW-Lab1-LuisMGL(config-if-range)#shutdown
+SW-Lab1-LuisMGL(config-if-range)#exit
 SW-Lab1-LuisMGL(config)#end
 SW-Lab1-LuisMGL#
 ```
@@ -681,6 +686,9 @@ En cada PC, abre **Desktop → IP Configuration → Static** e introduce la
 IP, la máscara y el gateway de la Tabla B.
 
 <img width="217" height="230" alt="11 1 1-ingreso-a-la-pc" src="https://github.com/user-attachments/assets/36ae8a2b-7b5e-471f-bc29-8d3c66fbba6c" />
+
+
+
 Ejemplo para una PC de Administración:
 
 -   IPv4 Address: `192.168.10.1`
@@ -732,13 +740,15 @@ Verifica lo siguiente:
 
 ## 13. Verificar conectividad con Ping
 
-Realiza las pruebas desde las PCs en **Desktop → Command Prompt**.
+Las pruebas de conectividad se pueden verificar mediante la consola tradicional o a través de la interfaz gráfica de Packet Tracer utilizando el sistema de simulación de paquetes.
 
-### 13.1 Prueba del gateway de cada VLAN
+### 13.1 Métodos de Validación en Tiempo Real
 
-Desde una PC de cada VLAN, ejecuta ping a su gateway:
+#### Método A: Consola CLI (Command Prompt)
+Desde el entorno de escritorio de cualquier Host origen, se puede ejecutar la herramienta estándar ICMP hacia las puertas de enlace o equipos remotos:
 
 ```bash
+# Ejemplo de prueba hacia los gateways desde hosts respectivos
 ping 192.168.10.254
 ping 192.168.20.254
 ping 192.168.30.254
@@ -754,7 +764,7 @@ Para verificar la conectividad y el enrutamiento entre tus VLANs sin usar la ter
 2. **Elige el origen:** Haz clic sobre la computadora desde la cual quieres mandar el ping (por ejemplo, `PC-1`).
 3. **Elige el destino:** Haz clic sobre la computadora de la misma vlan (por ejemplo, `PC-2`).
 4. **Verifica el resultado:** Revisa la esquina inferior derecha de Packet Tracer en la ventana **Ventas / Escenarios**:
-   * Si dice **`Successful`**, ¡tu enrutamiento entre VLANs funciona perfectamente! 🎉
+   * Si dice **`Successful`**, ¡tu enrutamiento entre VLANs funciona perfectamente!
    * Si dice **`Failed`**, revisa que las subinterfaces del router y el enlace troncal del switch estén bien configurados.
 Ejecuta solamente el ping correspondiente a la VLAN configurada en esa
 PC.
@@ -825,11 +835,58 @@ nombre claro, por ejemplo:
 
 ------------------------------------------------------------------------
 
-### 15. Archivo `.pkt`
+## 15. Glosario de comandos de Cisco IOS
+
+A continuación se detalla una investigación y resumen de cada uno de los comandos utilizados a lo largo de este proyecto en la CLI de Cisco, clasificados por su función operativa:
+
+### ⚙️ Modos de Acceso y Configuración
+*   **`enable`:** Cambia el entorno operativo del modo Usuario ("`>`") al modo Privilegiado o modo Root ("`#`"), solicitando contraseña si está configurada.
+*   **`configure terminal`:** Permite el ingreso desde el modo Privilegiado al modo de Configuración Global (`(config)#`), el cual es obligatorio para realizar modificaciones en el sistema.
+*   **`interface <tipo/número>`:** Cambia el prompt al modo de configuración de interfaz (`(config-if)#`) para aplicar parámetros físicos o lógicos a un puerto específico (Ej: `interface fastEthernet 0/7`).
+*   **`interface range <tipo/rango>`:** Permite agrupar múltiples puertos físicos para configurarlos de forma simultánea, optimizando el tiempo de despliegue (Ej: `interface range fa0/1-3`).
+*   **`exit`:** Retrocede un nivel exacto en la jerarquía de menús de la CLI de Cisco IOS.
+*   **`end`:** Cancela inmediatamente cualquier modo de configuración profunda y regresa al prompt raíz del modo Privilegiado (`#`).
+
+### 🔒 Comandos de Seguridad Básica
+*   **`hostname <nombre>`:** Asigna un nombre de identificación único al dispositivo en la red.
+*   **`enable secret <contraseña>`:** Configura una contraseña cifrada con un algoritmo fuerte para proteger el acceso al modo Privilegiado.
+*   **`service password-encryption`:** Cifra en texto plano todas las contraseñas guardadas en el archivo de configuración (como las de consola y VTY) para que no sean visibles al ejecutar un `show running-config`.
+*   **`banner motd #<mensaje>#`:** Configura un aviso legal visible de "Mensaje del Día" que se despliega inmediatamente antes de que cualquier usuario intente iniciar sesión en el equipo.
+*   **`line console 0`:** Permite ingresar al modo de configuración del puerto físico de consola para establecer directivas de acceso local.
+*   **`line vty 0 4`:** Permite ingresar al modo de configuración de las líneas de terminal virtuales (Virtual Teletype) para administrar el acceso remoto por Telnet o SSH.
+*   **`password <contraseña>`:** Asigna la clave que se solicitará al intentar ingresar por la línea física o virtual seleccionada.
+*   **`login`:** Instruye explícitamente al dispositivo a solicitar y validar la contraseña configurada en la línea de acceso antes de permitir la entrada al sistema.
+
+### 🌐 Configuración de VLANs y Conectividad (Capa 2 y Capa 3)
+*   **`vlan <id>`:** Accede a la base de datos de VLANs del switch y crea o edita el identificador numérico seleccionado.
+*   **`name <nombre>`:** Asigna una etiqueta de texto descriptiva a la VLAN seleccionada para facilitar la administración de la red.
+*   **`switchport mode access`:** Define un puerto del switch en modo de acceso estático, configurándolo para conectar exclusivamente dispositivos finales (como PCs).
+*   **`switchport access vlan <id>`:** Asigna y amarra el puerto de acceso a una VLAN específica para aislar su tráfico.
+*   **`switchport mode trunk`:** Establece la interfaz en modo troncal para permitir que el puerto transmita y reciba tráfico de múltiples VLANs simultáneamente.
+*   **`switchport trunk native vlan <id>`:** Define qué VLAN procesará el puerto troncal como tráfico nativo (tráfico sin etiquetar), mitigando vulnerabilidades de salto de VLAN.
+*   **`switchport trunk allowed vlan <lista>`:** Aplica un filtro estricto de seguridad en el enlace troncal para especificar únicamente qué IDs de VLAN tienen autorización de cruzar por dicho puerto.
+*   **`no shutdown`:** Enciende de forma lógica una interfaz física o subinterfaz, cambiando su estado administrativo a activo (*up*).
+*   **`shutdown`:** Deshabilita de forma lógica y apaga un puerto, una SVI o un rango de interfaces, como medida de protección para puertos inactivos.
+*   **`encapsulation dot1Q <vlan> [native]`:** Habilita el protocolo de etiquetado estándar de la industria IEEE 802.1Q en una subinterfaz de router, enlazándola a un ID de VLAN y definiendo si operará como nativa.
+*   **`ip address <dirección> <máscara>`:** Asigna de forma estática una dirección IPv4 y su correspondiente máscara de subred a una interfaz lógica, subinterfaz o SVI de gestión.
+*   **`ip default-gateway <dirección>`:** Configura la puerta de enlace predeterminada en un switch de Capa 2 para permitir su administración IP desde subredes externas.
+
+### 📊 Comandos de Diagnóstico, Verificación y Almacenamiento
+*   **`show running-config`:** Extrae y despliega en pantalla la configuración actual guardada en la memoria RAM volátil del dispositivo.
+*   **`show vlan brief`:** Genera un resumen conciso de la tabla de VLANs del switch, mostrando los nombres de las redes activas y sus puertos de acceso asociados.
+*   **`show interfaces trunk`:** Muestra detalladamente los puertos troncales operativos, el protocolo de encapsulación utilizado, la VLAN nativa y los IDs permitidos en el enlace.
+*   **`show ip interface brief`:** Despliega una tabla compacta con el estado físico y operativo de todas las interfaces y subinterfaces del equipo, junto con sus direcciones IP configuradas.
+*   **`show interfaces status`:** Muestra de forma rápida el estado de conexión de todos los puertos físicos del switch, especificando su velocidad, modo dúplex y VLAN actual.
+*   **`ping <dirección>`:** Envía paquetes de solicitud de eco ICMP hacia una IP destino para verificar la conectividad de extremo a extremo y medir los tiempos de respuesta.
+*   **`copy running-config startup-config` / `wr`:** Guarda de forma permanente la configuración activa de la memoria RAM a la memoria NVRAM no volátil, evitando que se borren los datos al reiniciar el equipo.
+
+------------------------------------------------------------------------
+
+### 15.1 Archivo `.pkt`
 
 [📂 Descargar Archivo Packet Tracer (1-proyecto.pkt)](./1-proyecto.pkt)
 
-### 15.1 Diario de aprendizaje y troubleshooting
+### 15.2 Diario de aprendizaje y troubleshooting
 
 **¿Cuál fue el mayor reto técnico que enfrentaste en esta unidad?**
 
