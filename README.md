@@ -42,6 +42,7 @@
 ## 2. Diagrama gráfico mermaid
 
 ```mermaid
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     R1["R1-Core-LuisMGL<br/>Router Central<br/>G0/0/0<br/>Router-on-a-Stick"]
 
