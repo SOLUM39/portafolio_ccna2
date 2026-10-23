@@ -677,8 +677,8 @@ esté activa y el enlace troncal esté correctamente configurado.
 
 En cada PC, abre **Desktop → IP Configuration → Static** e introduce la
 IP, la máscara y el gateway de la Tabla B.
-<img width="217" height="230" alt="11 1 1-ingreso-a-la-pc" src="https://github.com/user-attachments/assets/36ae8a2b-7b5e-471f-bc29-8d3c66fbba6c" />
 
+<img width="217" height="230" alt="11 1 1-ingreso-a-la-pc" src="https://github.com/user-attachments/assets/36ae8a2b-7b5e-471f-bc29-8d3c66fbba6c" />
 Ejemplo para una PC de Administración:
 
 -   IPv4 Address: `192.168.10.1`
