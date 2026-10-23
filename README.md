@@ -833,15 +833,17 @@ nombre claro, por ejemplo:
 
 **¿Cuál fue el mayor reto técnico que enfrentaste en esta unidad?**
 
-> Escribe aquí tu respuesta personal.
+> El mayor reto técnico fue el diseño e implementación de las tablas de direccionamiento A y B. Aunque los errores de sintaxis en los comandos se corrigen fácilmente y sirven como aprendizaje, un solo error en el esquema de direcciones IP provoca que toda la topología y el enrutamiento dejen de funcionar por completo.
 
 **Bitácora de errores**
 
--   **Error 1:** Describe un error que realmente te ocurrió.
--   **Solución 1:** Explica el comando o cambio que utilizaste para
-    resolverlo.
--   **Error 2:** Describe un segundo error real.
--   **Solución 2:** Explica cómo lo solucionaste.
+*   **Error 1:** No documentar ni registrar la contraseña asignada para acceder al modo privilegiado (`enable`) del router.
+*   **Solución 1:** Se tuvo que reiniciar el router para volver a aplicar la configuración inicial desde cero, asegurando esta vez registrar la contraseña de manera correcta.
+*   **Error 2:** Copiar y pegar una contraseña en el switch que incluía por error los caracteres `< >` (los cuales comúnmente delimitan variables en las guías, pero no deben escribirse).
+*   **Solución 2:** Reconfigurar la contraseña en la línea de comandos utilizando una cadena de texto limpia sin los caracteres `< >`.
+*   **Error 3:** Olvidar ingresar al modo de configuración global mediante el comando `configure terminal` antes de ejecutar las instrucciones de las interfaces.
+*   **Solución 3:** Revisé detalladamente la guía de pasos a seguir e identifiqué que omitir este comando impedía que el switch reconociera las configuraciones de rango, por lo que se aplicó primero para corregir el problema.
+
 
 ------------------------------------------------------------------------
 
