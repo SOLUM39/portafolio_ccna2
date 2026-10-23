@@ -39,7 +39,7 @@
          Puerto Fa0/9
 ```
 
-## 2. Diagrama gráfico
+## 2. Diagrama gráfico mermaid
 
 <details open>
 <summary>🗺️ Desplegar Diagrama de Topología Lógica</summary>
@@ -87,6 +87,7 @@ flowchart TB
 ```
 
 </details>
+
 
 
 
