@@ -42,6 +42,7 @@
 ## 2. Diagrama gráfico con Mermaid
 
 ```mermaid
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     R1["R1-Core-LuisMGL<br/>Router Central<br/>G0/0/0<br/>Router-on-a-Stick"]
 
@@ -89,6 +90,7 @@ flowchart TB
     class LAB1,LAB2 access
     class PCG,A10,A20,A30,B10,B20,B30 pc
 ```
+
 
 ## 3. Tabla de direccionamiento
 
