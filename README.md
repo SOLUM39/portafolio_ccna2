@@ -856,6 +856,22 @@ A continuación se detalla una investigación y resumen de cada uno de los coman
 *   **Error 3:** Olvidar ingresar al modo de configuración global mediante el comando `configure terminal` antes de ejecutar las instrucciones de las interfaces.
 *   **Solución 3:** Revisé detalladamente la guía de pasos a seguir e identifiqué que omitir este comando impedía que el switch reconociera las configuraciones de rango, por lo que se aplicó primero para corregir el problema.
 
+## 🎬 Evidencia en Video: Verificación del Laboratorio
+
+A continuación, se presentan las demostraciones en video explicando el funcionamiento de la topología Router-on-a-Stick y la validación de conectividad inter-VLAN.
+
+### 📹 1. Verificación de Comandos y Estado de Troncales
+Despliegue de los comandos lógicos y estado operativo de las interfaces:
+<video src="Cisco Packet Tracer - F_MANEJO DE REDES_im1.mp4" width="100%" controls>
+  Tu navegador no admite la reproducción de este video.
+</video>
+### 📹 3. Verificación de Comandos y Estado de Troncales
+
+### 📹 2. Prueba de Fuego (Ping Inter-VLAN Exitoso)
+Demostración del enrutamiento de paquetes entre diferentes segmentos de red:
+<video src="Cisco Packet Tracer - F_MANEJO DE REDES_im2.mp4" width="100%" controls>
+  Tu navegador no admite la reproducción de este video.
+</video>
 
 ------------------------------------------------------------------------
 
