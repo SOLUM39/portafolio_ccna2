@@ -864,10 +864,8 @@ Haz clic en cualquiera de los siguientes enlaces para acceder directamente al ar
   * *Verificación de comandos iniciales, estados lógicos y enlaces troncales en el Switch Core.*
 
 * 🎬 **[Descargar Video Explicativo - Parte 2](./Cisco%20Packet%20Tracer%20-%20F_MANEJO%20DE%20REDES_im2.mp4)**
-  * *Prueba de fuego: Demostración de conectividad Inter-VLAN mediante Ping exitoso.*
-
-* 📦 **[Descargar Paquete Completo de Evidencias (ZIP)](./PC3%202026-10-24%2022-12-17.zip)**
   * *Contenedor comprimido que incluye el ping grafico de ciscopacketracer.*
-
+* 📦 **[Descargar Paquete Completo de Evidencias (ZIP)](./PC3%202026-10-24%2022-12-17.zip)**
+  * *Prueba de fuego: Demostración de conectividad Inter-VLAN mediante Ping exitoso.*
 ------------------------------------------------------------------------
 
